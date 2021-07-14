@@ -1,0 +1,250 @@
+﻿
+
+
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+
+<body class="bg-gradient-primary">
+
+    <div class="container">
+
+        <div class="card o-hidden border-0 shadow-lg my-5">
+            <div class="card-body p-0">
+                <!-- Nested Row within Card Body -->
+                <div class="row">
+                    <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
+                    <div class="col-lg-7">
+                        <div class="p-5">
+                            <div class="text-center">
+                                <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
+                            </div>
+                            <form class="user">
+                                <div class="form-group row">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <input type="text" class="form-control form-control-user" id="exampleFirstName"
+                                               placeholder="First Name">
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control form-control-user" id="exampleLastName"
+                                               placeholder="Last Name">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <input type="email" class="form-control form-control-user" id="exampleInputEmail"
+                                           placeholder="Email Address">
+                                </div>
+
+                                <div class="form-group row">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <input type="text" class="form-control form-control-user" id="exampleaddress"
+                                               placeholder="Address">
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control form-control-user" id="exampleUname"
+                                               placeholder="User name">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <input type="password" class="form-control form-control-user"
+                                               id="exampleInputPassword" placeholder="Password">
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <input type="password" class="form-control form-control-user"
+                                               id="exampleRepeatPassword" placeholder="Repeat Password">
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <input type="text" class="form-control form-control-user" id="exampleNic"
+                                               placeholder="Nic">
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control form-control-user" id="exampleTel"
+                                               placeholder="Tel">
+                                    </div>
+                                </div>
+
+
+
+
+                                <div class="form-group row">
+
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control form-control-user" id="pckg"
+                                               placeholder="Package">
+                                    </div>
+
+
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control form-control-user" id="prc"
+                                               placeholder="Price">
+
+                                    </div>
+
+                                </div>
+
+
+                           
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                <a href="#" onclick="saveuser()" class="btn btn-primary btn-user btn-block">
+                                    Register Account
+                                </a>
+                                <hr>
+
+                            </form>
+                            <hr>
+                            <div class="text-center">
+                                <a class="small" href="forgot-password.html">Forgot Password?</a>
+                            </div>
+                            <div class="text-center">
+                                <a class="small" href="/Home/Index">Already have an account? Login!</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+     <div>
+
+     
+    </div>
+
+   
+</body>
+ 
+
+<script>
+
+    function saveuser() {
+     
+   
+
+
+
+
+
+
+
+        var user = new Object();
+        user.Fname = $("#exampleFirstName").val();
+        user.Lname = $("#exampleLastName").val();
+        user.Email = $("#exampleInputEmail").val();
+        user.Address = $("#exampleaddress").val();
+
+        user.Username = $("#exampleUname").val();
+        user.Password = $("#exampleInputPassword").val();
+        user.Nic = $("#exampleNic").val();
+        user.Tel = $("#exampleTel").val();
+        user.Package = $("#pckg").val();
+        user.Price = $("#prc").val();
+
+        
+        var user = JSON.stringify({
+     
+            user:user
+        });
+
+
+        return $.ajax({
+            contentType: 'application/json; charset=utf-8',
+            dataType: 'json',
+            type: 'POST',
+            url: "/User/SaveUser",
+            data: user,
+            success: function (result) {
+                if (result == true) {
+
+                    alert("Yes");
+
+                }
+                else {
+                    alert("Saved Successfully");
+                   
+                }
+                //location.reload();
+            },
+            error: function () {
+                alert("Error!")
+            }
+        });
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    //function SaveUser() {
+    //    var user = new Object();
+    //    user.Fname = $("#exampleFirstName").val();
+    //    user.Lname = $("#exampleLastName").val();
+    //    user.Email = $("#exampleInputEmail").val();
+    //    user.Address = $("#exampleaddress").val();
+      
+    //    user.Username = $("#exampleUname").val();
+    //    user.Password = $("#exampleInputPassword").val();
+    //    user.Nic = $("#exampleNic").val();
+    //    user.Tel = $("#exampleTel").val();
+    //    user.Package = $("#pckg").val();
+    //    user.Price = $("#prc").val();
+    //    var user = JSON.stringify({
+    //        user: user
+
+    //    });
+    //    return $.ajax({
+    //        contentType: 'application/json; charset=utf-8',
+    //        dataType: 'json',
+    //        type: 'POST',
+    //        url: "/User/SaveUser",
+    //        data: user,
+    //        success: function (result) {
+    //            if (result == true) {
+
+    //                alert("Saved Successfully");
+                   
+    //            }
+    //            else {
+
+    //                alert("Failed to Save");
+                  
+    //            }
+    //            //location.reload();
+    //        },
+    //        error: function () {
+    //            alert("Error!")
+    //        }
+    //    });
+    //}
+
+
+</script>
