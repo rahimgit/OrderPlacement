@@ -20,25 +20,32 @@ namespace OrderPlacement.Controllers
         [HttpPost]
         public JsonResult SaveUser(User user)
         {
-            orderplacementEntities8 db = new orderplacementEntities8();
-
-            bool isSuccess = true;
             
-            try
-            {
-                user.Status = 1;
-                user.Password = AppHelper.GetMd5Hash(user.Password);
-                db.Users.Add(user);
-                db.SaveChanges();
-                
-            }
-            catch (Exception)
-            {
+                orderplacementEntities8 db = new orderplacementEntities8();
 
-                isSuccess = false;
+                bool isSuccess = true;
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    user.Status = 1;
+                    user.Password = AppHelper.GetMd5Hash(user.Password);
+                    db.Users.Add(user);
+                    db.SaveChanges();
+
+                }
+                catch (Exception)
+                {
+
+                    isSuccess = false;
+                }
             }
+                return Json(isSuccess, JsonRequestBehavior.AllowGet);
+            
+            
+           
           
-            return Json(JsonRequestBehavior.AllowGet);
+            
         }
 
 

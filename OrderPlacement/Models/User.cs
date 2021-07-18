@@ -11,20 +11,32 @@ namespace OrderPlacement.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     
     public partial class User
     {
         public int id { get; set; }
+        [Required]
         public string Fname { get; set; }
+        [Required]
         public string Lname { get; set; }
+        [Required]
         public string Email { get; set; }
+        [Required]
         public string Address { get; set; }
+        [Required]
         public string Username { get; set; }
+        [Required]
         public string Password { get; set; }
+        [Required]
         public string Nic { get; set; }
+        [Required]
         public string Tel { get; set; }
+        [Required]
         public int Productid { get; set; }
+        [Required]
         public string Package { get; set; }
+        [Required]
         public Nullable<double> Price { get; set; }
         public string Role { get; set; }
         public Nullable<int> Status { get; set; }

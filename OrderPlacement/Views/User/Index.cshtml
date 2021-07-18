@@ -26,7 +26,7 @@
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                         <input type="text" class="form-control form-control-user" id="exampleFirstName"
-                                               placeholder="First Name">
+                                               placeholder="First Name" required>
                                     </div>
                                     <div class="col-sm-6">
                                         <input type="text" class="form-control form-control-user" id="exampleLastName"
@@ -90,6 +90,17 @@
                                 </div>
 
 
+                                 <div class="form-group row">
+
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control form-control-user" id="samplerole"
+                                               placeholder="Role">
+                                    </div>
+
+
+
+                                </div>
+
                            
 
 
@@ -105,7 +116,7 @@
 
 
 
-                                <a href="#" onclick="saveuser()" class="btn btn-primary btn-user btn-block">
+                                <a href="#" onclick="saveuser()"    class="btn btn-primary btn-user btn-block">
                                     Register Account
                                 </a>
                                 <hr>
@@ -137,15 +148,14 @@
 
 <script>
 
+
+    
+
+
+
+
     function saveuser() {
      
-   
-
-
-
-
-
-
 
         var user = new Object();
         user.Fname = $("#exampleFirstName").val();
@@ -159,9 +169,9 @@
         user.Tel = $("#exampleTel").val();
         user.Package = $("#pckg").val();
         user.Price = $("#prc").val();
-
+        user.Role = $("#samplerole").val();
         
-        var user = JSON.stringify({
+        var data = JSON.stringify({
      
             user:user
         });
@@ -172,16 +182,17 @@
             dataType: 'json',
             type: 'POST',
             url: "/User/SaveUser",
-            data: user,
+            data: data,
             success: function (result) {
-                if (result == true) {
+                if ( result == true ) {
 
-                    alert("Yes");
-
+                    alert("User Saved Successfully");
+                   // window.location.href = "/Home/Index";
                 }
                 else {
-                    alert("Saved Successfully");
-                   
+                    
+                    alert("No");
+                   // window.location.href = "/Home/Login";
                 }
                 //location.reload();
             },
@@ -190,7 +201,6 @@
             }
         });
     }
-
 
 
 
